@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+    /* --: #ededf2; */
+    --color-primary: #ededf2
+    
+}
