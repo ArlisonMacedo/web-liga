@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logoImg from '../assets/copa-brasao.png';
 
 export function Home() {
@@ -21,10 +22,20 @@ export function Home() {
                 </h1>
 
             </div>
-            <div className='flex justify-center mt-12 hover:opacity-90'>
-                <button className='bg-yellow-600 text-white w-[200px] h-10 rounded-md'>
-                    <p className='font-black'>CADASTRAR SEU TIME</p>
-                </button>
+            <div className='flex justify-center mt-12'>
+                <Link to={"/createteam"}>
+                    <button className='bg-yellow-600 text-white w-[200px] h-10 rounded-md mr-3 hover:opacity-80 cursor-pointer'>
+                        <p className='font-black'>CADASTRAR SEU TIME</p>
+                    </button>
+
+                </Link>
+
+                <Link to={"/login"}>
+                    <button
+                        className='bg-blue-500  text-white w-[200px] h-10 rounded-md hover:opacity-80 cursor-pointer'>
+                        <p className='font-black'> LOGIN</p>
+                    </button>
+                </Link>
             </div>
 
         </div>
