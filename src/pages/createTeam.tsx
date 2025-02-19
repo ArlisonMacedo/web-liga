@@ -1,5 +1,7 @@
 export function CreateTeam() {
     return (
-        <h1>Create you Team</h1>
+        <div className="w-screen h-screen bg-white">
+
+        </div>
     )
 }

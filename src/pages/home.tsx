@@ -3,14 +3,14 @@ import logoImg from '../assets/copa-brasao.png';
 
 export function Home() {
     return (
-        <div className="w-screen h-screen justify-center bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-center">
-            <div className="w-full bg-transparent flex">
+        <div className="w-screen h-screen justify-center bg-cover bg-no-repeat bg-center">
+            <div className="w-full bg-transparent flex items-center justify-center">
 
-                <img src={logoImg} alt="logo" className='w-30' />
+                <img src={logoImg} alt="logo" className='w-50' />
 
             </div>
             <div className='w-full justify-center items-center flex'>
-                <h1 className="text-yellow-600 text-6xl py-1 font-black font-roboto">Campeonato Copa da BR</h1>
+                <h1 className="text-secundary text-6xl py-1 font-black font-roboto">Campeonato Copa da BR</h1>
             </div>
             <div className='justify-center flex mt-2.5'>
                 <h1 className='bg-green-900 w-3xl p-5 text-white border-none rounded-2xl'>
