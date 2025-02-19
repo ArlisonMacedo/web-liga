@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
+// import { useParams } from 'react-router-dom'
 import logoImg from '../assets/copa-brasao.png'
+import { useParams } from 'react-router-dom'
+import api from '../service/api'
 
 export function CreatePlayer() {
+    const { teamId } = useParams()
 
     const [formData, setFormData] = useState({
         name: '',
@@ -10,11 +14,12 @@ export function CreatePlayer() {
         address: '',
         birthdate: '',
         nameMother: '',
-        nameFather: ''
+        nameFather: '',
+        id: 'fdbe1ce0-7847-4b38-9848-2df05e3eb6f6'
 
     })
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setFormData({
             ...formData,
@@ -22,9 +27,16 @@ export function CreatePlayer() {
         })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log('Dados do formulario', formData)
+        // console.log(formData)
+        try {
+            const response = await api.post('players', formData)
+            console.log(response.data)
+        } catch (error) {
+            console.log('OPaaa, Erro', error)
+        }
+
     }
     return (
         <div className="w-screen h-screen bg-white">
@@ -36,7 +48,7 @@ export function CreatePlayer() {
 
             <div className="bg-gray-200 flex justify-center items-center w-full p-4">
                 <form onSubmit={handleSubmit}>
-                    <h1 className="text-3xl font-black mb-3">Insira os dados.</h1>
+                    <h1 className="text-3xl font-black mb-3">Insira os dados</h1>
                     <div className="items-center">
                         <label htmlFor=""
                             className='text-secundary font-black text-xl mr-6'
@@ -45,7 +57,7 @@ export function CreatePlayer() {
                         </label>
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full text-secundary'
-                            placeholder="Barcelona FC"
+                            placeholder="Alan Rodrigues da Silva"
                             id="name"
                             name="name"
                             value={formData.name}
@@ -62,7 +74,7 @@ export function CreatePlayer() {
                         </label>
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
-                            placeholder="Maracaçumé"
+                            placeholder="00000000000"
                             id="cpf"
                             name="cpf"
                             value={formData.cpf}
@@ -78,7 +90,7 @@ export function CreatePlayer() {
                         </label>
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
-                            placeholder="José Antonio Silva"
+                            placeholder="0000000000000"
                             id="rg"
                             name="rg"
                             value={formData.rg}
@@ -94,7 +106,7 @@ export function CreatePlayer() {
                         </label>
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
-                            placeholder="00000000000"
+                            placeholder="Av. Dayse de Sousa, n°, Bairro Centro, Cidade Maracaçumé"
                             id="address"
                             name="address"
                             value={formData.address}
@@ -126,7 +138,7 @@ export function CreatePlayer() {
                         </label>
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
-                            placeholder="00000000000"
+                            placeholder="Maria Aparecida Sousa Silva"
                             id="nameMother"
                             name="nameMother"
                             value={formData.nameMother}
@@ -142,7 +154,7 @@ export function CreatePlayer() {
                         </label>
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
-                            placeholder="00000000000"
+                            placeholder="Jose Ribamar Sousa Silva"
                             id="nameFather"
                             name="nameFather"
                             value={formData.nameFather}

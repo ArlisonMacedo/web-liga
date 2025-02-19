@@ -1,16 +1,19 @@
 
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import logoImg from "../assets/copa-brasao.png"
-import axios from "axios"
+import api from "../service/api"
+import { useNavigate } from 'react-router-dom'
 
 export function CreateTeam() {
 
     const [formData, setFormData] = useState({
-        team: '',
+        name: '',
         city: '',
         couch: '',
         cpf: ''
     })
+    const [teamId, setTeamId] = useState('')
+    const navigate = useNavigate()
 
     const handleChange = (e: any) => {
         const { name, value } = e.target
@@ -20,8 +23,14 @@ export function CreateTeam() {
         })
     }
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        const response = await api.post('teams', formData)
+        if (response.data.teamId) {
+            // localStorage.setItem("teamId", response.data.teamId)
+            setTeamId(response.data.teamId)
+            navigate(`/createplayer/${teamId}`)
+        }
 
     }
 
@@ -33,7 +42,7 @@ export function CreateTeam() {
             </div>
             <div className="bg-gray-200 flex justify-center items-center w-full p-4">
                 <form onSubmit={handleSubmit}>
-                    <h1 className="text-3xl font-black mb-3">Insira os dados.</h1>
+                    <h1 className="text-3xl font-black mb-3">Insira os dados.{teamId}</h1>
                     <div className="items-center">
                         <label htmlFor=""
                             className='text-secundary font-black text-xl mr-6'
@@ -43,9 +52,9 @@ export function CreateTeam() {
                         <input type="text"
                             className='p-3 border-secundary border rounded h-10 w-full text-secundary'
                             placeholder="Barcelona FC"
-                            id="team"
-                            name="team"
-                            value={formData.team}
+                            id="name"
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
 
                         />

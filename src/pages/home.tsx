@@ -6,7 +6,7 @@ export function Home() {
         <div className="w-screen h-screen justify-center bg-cover bg-no-repeat bg-center">
             <div className="w-full bg-transparent flex items-center justify-center">
 
-                <img src={logoImg} alt="logo" className='w-50' />
+                <img src={logoImg} alt="logo" className='w-40' />
 
             </div>
             <div className='w-full justify-center items-center flex'>

@@ -13,7 +13,7 @@ export function Routes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/createteam" element={<CreateTeam />} />
-                <Route path="/createplayer" element={<CreatePlayer />} />
+                <Route path="/createplayer/:teamId" element={<CreatePlayer />} />
             </Embrace>
         </BrowserRouter>
     )
