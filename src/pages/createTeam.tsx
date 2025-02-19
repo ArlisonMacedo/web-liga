@@ -1,6 +1,7 @@
 
 import { useState } from "react"
 import logoImg from "../assets/copa-brasao.png"
+import { api } from "../service/api"
 
 export function CreateTeam() {
 
@@ -19,9 +20,10 @@ export function CreateTeam() {
         })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        console.log('Dados do formulario', formData)
+        const response = await api.post('teams', formData)
+        console.log(response)
     }
 
     return (
