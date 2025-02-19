@@ -12,7 +12,6 @@ export function CreateTeam() {
         couch: '',
         cpf: ''
     })
-    const [teamId, setTeamId] = useState('')
     const navigate = useNavigate()
 
     const handleChange = (e: any) => {
@@ -27,23 +26,25 @@ export function CreateTeam() {
         e.preventDefault();
         const response = await api.post('teams', formData)
         if (response.data.teamId) {
-            // localStorage.setItem("teamId", response.data.teamId)
-            setTeamId(response.data.teamId)
-            navigate(`/createplayer/${teamId}`)
+            navigate(`/createplayer/${response.data.teamId}`)
         }
 
     }
+
+    // useEffect(() => {
+    //     navigate(`/createplayer/${id}`)
+    // }, [handleSubmit])
 
     return (
         <div className="w-screen h-screen bg-white">
             <div className='flex justify-center items-center'>
                 <img src={logoImg} alt="logo" className='w-[150px]' />
-                <h1 className='text-secunday font-black text-6xl items-center'>Campeonato Copa da BR</h1>
+                <h1 className='text-secunday font-black text-4xl items-center'>Campeonato Copa da BR</h1>
             </div>
-            <div className="bg-gray-200 flex justify-center items-center w-full p-4">
+            <div className="bg-gray-200 flex justify-center items-center w-full p-6">
                 <form onSubmit={handleSubmit}>
-                    <h1 className="text-3xl font-black mb-3">Insira os dados.{teamId}</h1>
-                    <div className="items-center">
+                    <h1 className="text-3xl font-black mb-3">Insira os dados.</h1>
+                    <div>
                         <label htmlFor=""
                             className='text-secundary font-black text-xl mr-6'
                         >

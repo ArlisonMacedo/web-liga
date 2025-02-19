@@ -4,6 +4,7 @@ import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { CreateTeam } from "./pages/createTeam";
 import { CreatePlayer } from "./pages/createPlayer";
+import { Dashboard } from "./pages/dashboard";
 
 
 export function Routes() {
@@ -14,6 +15,8 @@ export function Routes() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/createteam" element={<CreateTeam />} />
                 <Route path="/createplayer/:teamId" element={<CreatePlayer />} />
+                <Route path="/dashboard/:id" element={<Dashboard />} />
+
             </Embrace>
         </BrowserRouter>
     )

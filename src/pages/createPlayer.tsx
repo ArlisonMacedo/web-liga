@@ -1,12 +1,12 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 // import { useParams } from 'react-router-dom'
 import logoImg from '../assets/copa-brasao.png'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import api from '../service/api'
 
 export function CreatePlayer() {
     const { teamId } = useParams()
-
+    const [alert, setAlert] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         cpf: '',
@@ -15,9 +15,11 @@ export function CreatePlayer() {
         birthdate: '',
         nameMother: '',
         nameFather: '',
-        id: 'fdbe1ce0-7847-4b38-9848-2df05e3eb6f6'
+        id: teamId
 
     })
+    const navigate = useNavigate()
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -29,12 +31,16 @@ export function CreatePlayer() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        // console.log(formData)
+        // console.log(formData.id)
         try {
             const response = await api.post('players', formData)
-            console.log(response.data)
+            if (response.data.playerId) {
+                setAlert(!alert)
+            }
+            navigate(`/dashboard/${teamId}`)
+            setAlert(!alert)
         } catch (error) {
-            console.log('OPaaa, Erro', error)
+            console.log('Opaaa, Erro', error)
         }
 
     }
@@ -47,6 +53,10 @@ export function CreatePlayer() {
             </div>
 
             <div className="bg-gray-200 flex justify-center items-center w-full p-4">
+                {alert && <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+                    <p className="font-bold">Sucesso!</p>
+                    <p>O atleta foi cadastro com sucesso.</p>
+                </div>}
                 <form onSubmit={handleSubmit}>
                     <h1 className="text-3xl font-black mb-3">Insira os dados</h1>
                     <div className="items-center">

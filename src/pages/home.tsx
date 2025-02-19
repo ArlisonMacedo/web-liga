@@ -24,7 +24,7 @@ export function Home() {
             </div>
             <div className='flex justify-center mt-12'>
                 <Link to={"/createteam"}>
-                    <button className='bg-yellow-600 text-white w-[200px] h-10 rounded-md mr-3 hover:opacity-80 cursor-pointer'>
+                    <button className='bg-yellow-400 text-white w-[200px] h-10 rounded-md mr-3 hover:opacity-80 cursor-pointer'>
                         <p className='font-black'>CADASTRAR SEU TIME</p>
                     </button>
 
