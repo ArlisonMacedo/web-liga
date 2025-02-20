@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 // import { useParams } from 'react-router-dom'
 import logoImg from '../assets/copa-brasao.png'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -66,7 +66,7 @@ export function CreatePlayer() {
                             Nome do Jogador
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full text-secundary'
                             placeholder="Alan Rodrigues da Silva"
                             id="name"
                             name="name"
@@ -83,7 +83,7 @@ export function CreatePlayer() {
                             CPF
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="00000000000"
                             id="cpf"
                             name="cpf"
@@ -99,7 +99,7 @@ export function CreatePlayer() {
                             RG
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="0000000000000"
                             id="rg"
                             name="rg"
@@ -115,7 +115,7 @@ export function CreatePlayer() {
                             Endereço
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="Av. Dayse de Sousa, n°, Bairro Centro, Cidade Maracaçumé"
                             id="address"
                             name="address"
@@ -131,7 +131,7 @@ export function CreatePlayer() {
                             Data de Nasc.
                         </label>
                         <input type="date"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="00000000000"
                             id="birthdate"
                             name="birthdate"
@@ -147,7 +147,7 @@ export function CreatePlayer() {
                             Nome da Mãe
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="Maria Aparecida Sousa Silva"
                             id="nameMother"
                             name="nameMother"
@@ -163,7 +163,7 @@ export function CreatePlayer() {
                             Nome do Pai
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="Jose Ribamar Sousa Silva"
                             id="nameFather"
                             name="nameFather"

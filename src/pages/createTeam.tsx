@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 export function CreateTeam() {
 
+
     const [formData, setFormData] = useState({
         name: '',
         city: '',
@@ -13,6 +14,8 @@ export function CreateTeam() {
         cpf: ''
     })
     const navigate = useNavigate()
+
+
 
     const handleChange = (e: any) => {
         const { name, value } = e.target
@@ -24,10 +27,10 @@ export function CreateTeam() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        const response = await api.post('teams', formData)
-        if (response.data.teamId) {
-            navigate(`/createplayer/${response.data.teamId}`)
-        }
+        await api.post('teams', formData)
+
+        navigate('/login')
+
 
     }
 
@@ -51,7 +54,7 @@ export function CreateTeam() {
                             Nome do Time
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full text-secundary'
                             placeholder="Barcelona FC"
                             id="name"
                             name="name"
@@ -68,7 +71,7 @@ export function CreateTeam() {
                             Cidade do Time
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="Maracaçumé"
                             id="city"
                             name="city"
@@ -84,7 +87,7 @@ export function CreateTeam() {
                             Nome do Técnico
                         </label>
                         <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="José Antonio Silva"
                             id="couch"
                             name="couch"
@@ -99,11 +102,13 @@ export function CreateTeam() {
                         >
                             CPF do Técnico
                         </label>
-                        <input type="text"
-                            className='p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
+                        <input
+                            type="text"
+                            className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none text-secundary'
                             placeholder="00000000000"
                             id="cpf"
                             name="cpf"
+                            // mask="999.999.999-99"
                             value={formData.cpf}
                             onChange={handleChange}
 

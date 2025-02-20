@@ -1,13 +1,17 @@
 
 import { useState } from 'react';
 import logoImg from '../assets/copa-brasao.png';
+import api from '../service/api';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
 
+
     const [formData, setFormData] = useState({
         cpf: '',
-        password: '',
     })
+
+    const navigate = useNavigate()
 
     const handleChange = (e: any) => {
         const { name, value } = e.target
@@ -19,8 +23,16 @@ export function Login() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log('Dados do formulário:', formData);
-        // Aqui você pode enviar os dados para um backend, por exemplo
+
+        api.post('/login', formData).then(response => {
+            // console.log(response.data)
+            const user = formData.cpf === response.data.cpf
+            if (user) {
+                localStorage.setItem('isAuthenticated', 'true')
+                localStorage.setItem('id', response.data.id)
+                navigate(`/dashboard/${response.data.id}`)
+            }
+        })
     };
 
     return (
@@ -41,7 +53,7 @@ export function Login() {
                             <label htmlFor="cpf" className='text-secundary font-black text-xl mr-6'>CPF</label>
                             <input
                                 placeholder='0000000000'
-                                className='p-3 border-secundary border rounded h-10 w-full focus:none'
+                                className='bg-white font-bold p-3 border-secundary border rounded h-10 w-full focus:none'
                                 type='text'
                                 id="cpf"
                                 name="cpf"
@@ -50,19 +62,7 @@ export function Login() {
                             />
                         </div>
                         <br />
-                        <div className='flex justify-center items-center'>
 
-                            <label htmlFor="password" className='text-secundary font-black text-xl mr-6' >Senha</label>
-                            <input
-                                className='border-secundary border rounded h-10 p-3'
-                                placeholder='********************'
-                                type='password'
-                                id="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
-                        </div>
 
                         <button type="submit"
                             className="bg-blue-500 w-full text-white 
@@ -75,5 +75,11 @@ export function Login() {
 
             </div>
         </div>
+
+
+
+
+
+
     )
 }

@@ -5,6 +5,7 @@ import { Login } from "./pages/login";
 import { CreateTeam } from "./pages/createTeam";
 import { CreatePlayer } from "./pages/createPlayer";
 import { Dashboard } from "./pages/dashboard";
+import { PrivateRoute } from "./auth/provider";
 
 
 export function Routes() {
@@ -14,8 +15,16 @@ export function Routes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/createteam" element={<CreateTeam />} />
-                <Route path="/createplayer/:teamId" element={<CreatePlayer />} />
-                <Route path="/dashboard/:id" element={<Dashboard />} />
+                <Route path="/createplayer/:teamId" element={
+                    <PrivateRoute>
+                        <CreatePlayer />
+                    </PrivateRoute>
+                } />
+                <Route path="/dashboard/:id" element={
+                    <PrivateRoute>
+                        <Dashboard />
+                    </PrivateRoute>
+                } />
 
             </Embrace>
         </BrowserRouter>
