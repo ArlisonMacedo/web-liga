@@ -3,41 +3,54 @@ import { useParams } from "react-router-dom"
 import api from "../service/api"
 
 
-interface TeamAndPlayers {
+interface CostTeam {
 
   id: string,
   name: string,
-  city: string,
-  couch: string,
   cpf: string,
-  players: [{
-    id: string,
-    name: string,
-    cpf: string,
-    rg: string,
-    address: string,
-    birthdate: string,
-    nameMother: string,
-    nameFather: string,
-  }]
+  rg: string,
+  address: string,
+  birthdate: string,
+  nameMother: string,
+  nameFather: string,
+
+}
+
+interface Team {
+  id: string,
+  name: string,
+  cpf: string,
+  couch: string,
+  city: string
 }
 
 export function Dashboard() {
 
   const { id } = useParams()
-  const [players, setPlayer] = useState<TeamAndPlayers[]>([])
+  const [players, setPlayers] = useState<CostTeam[]>([])
+
 
   useEffect(() => {
-    api.get(`/teams/${id}`).then(response => {
-      console.log(response.data.costTeam)
-      setPlayer(response.data.costTeam)
-      console.log(players)
+    api.get(`teams/${id}`).then(response => {
+      setPlayers(response.data)
     })
   }, [])
 
+
   return (
     <div>
-      <h1>olá mundo</h1>
+      {
+        players.map((player, key) => {
+          return (
+            <div key={key}>
+              <p>{player.name}</p>
+              <p>{player.cpf}</p>
+              <p>{player.rg}</p>
+            </div>
+
+          )
+        })
+      }
     </div>
   )
 }
