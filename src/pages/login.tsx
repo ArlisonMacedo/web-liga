@@ -11,6 +11,8 @@ export function Login() {
         cpf: '',
     })
 
+    const SuperUser = '07368342308'
+
     const navigate = useNavigate()
 
     const handleChange = (e: any) => {
@@ -24,15 +26,24 @@ export function Login() {
     const handleSubmit = (e: any) => {
         e.preventDefault();
 
-        api.post('/login', formData).then(response => {
-            // console.log(response.data)
-            const user = formData.cpf === response.data.cpf
-            if (user) {
-                localStorage.setItem('isAuthenticated', 'true')
-                localStorage.setItem('id', response.data.id)
-                navigate(`/dashboard/${response.data.id}`)
-            }
-        })
+        if (formData.cpf === SuperUser) {
+            console.log('CHEGUEI AQUI SUPER')
+            localStorage.setItem('isAuthenticated', 'true')
+            navigate('/dashboardowner')
+        } else {
+
+
+            api.post('/login', formData).then(response => {
+                // console.log(response.data)
+
+                const user = formData.cpf === response.data.cpf
+                if (user) {
+                    localStorage.setItem('isAuthenticated', 'true')
+                    localStorage.setItem('id', response.data.id)
+                    navigate(`/dashboard/${response.data.id}`)
+                }
+            })
+        }
     };
 
     return (

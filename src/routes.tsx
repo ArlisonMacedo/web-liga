@@ -6,6 +6,8 @@ import { CreateTeam } from "./pages/createTeam";
 import { CreatePlayer } from "./pages/createPlayer";
 import { Dashboard } from "./pages/dashboard";
 import { PrivateRoute } from "./auth/provider";
+import { DashboardOwner } from "./pages/dashboardOwner";
+import { EditPlayer } from "./pages/editPlayer";
 
 
 export function Routes() {
@@ -23,6 +25,16 @@ export function Routes() {
                 <Route path="/dashboard/:id" element={
                     <PrivateRoute>
                         <Dashboard />
+                    </PrivateRoute>
+                } />
+                <Route path="/dashboardowner" element={
+                    <PrivateRoute>
+                        <DashboardOwner />
+                    </PrivateRoute>
+                } />
+                <Route path="/editplayer/:idPlayer/:idTeam" element={
+                    <PrivateRoute>
+                        <EditPlayer />
                     </PrivateRoute>
                 } />
 
