@@ -43,7 +43,7 @@ export function DashboardOwner() {
   async function deletePlayer(id: string) {
     api.delete(`players/${id}`).then(() => {
       console.log('Jogador Deletado')
-
+      window.location.reload()
     })
   }
 
