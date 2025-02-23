@@ -20,6 +20,8 @@ export function EditPlayer() {
     teamId: idTeam
   })
   const navigate = useNavigate()
+  const [isClicked, setClicked] = useState(false)
+
 
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -33,10 +35,13 @@ export function EditPlayer() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
     try {
+      setClicked(true)
       api.put(`/player/${idPlayer}`, formData)
         .then(() => {
           navigate('/dashboardowner')
+          setClicked(false)
         })
+
     } catch (error) {
       console.log('Erro ', error)
     }
@@ -174,12 +179,25 @@ export function EditPlayer() {
             />
           </div>
 
-          <button type="submit"
-            className="bg-blue-500 w-full text-white 
+          {isClicked ? (
+            <button type="reset"
+              className="bg-blue-200 w-full text-white 
                             font-bold cursor-pointer hover:opacity-85 
-                            transition-all duration-500 rounded-sm p-2 mt-4">
-            <p>Salvar</p>
-          </button>
+                            transition-all duration-500 rounded-sm p-2 mt-4 
+                            ">
+              <div className='flex justify-center items-center'>
+                <p className='animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900'></p>
+              </div>
+            </button>
+          ) :
+            <button type="submit"
+              className="bg-blue-500 w-full text-white 
+                            font-bold cursor-pointer hover:opacity-85 
+                            transition-all duration-500 rounded-sm p-2 mt-4 
+                            ">
+              <p>Salvar</p>
+            </button>
+          }
 
 
         </form>

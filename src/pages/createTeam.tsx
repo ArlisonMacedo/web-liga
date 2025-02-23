@@ -13,6 +13,7 @@ export function CreateTeam() {
         couch: '',
         cpf: ''
     })
+    const [isClicked, setClicked] = useState(false)
     const navigate = useNavigate()
 
 
@@ -27,8 +28,9 @@ export function CreateTeam() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        setClicked(true)
         await api.post('teams', formData)
-
+        setClicked(false)
         navigate('/login')
 
 
@@ -114,13 +116,25 @@ export function CreateTeam() {
 
                         />
                     </div>
-
-                    <button type="submit"
-                        className="bg-blue-500 w-full text-white 
+                    {
+                        isClicked ? (
+                            <button type="reset"
+                                className="bg-blue-200 w-full text-white 
+                            font-bold cursor-pointer hover:opacity-85 
+                            transition-all duration-500 rounded-sm p-2 mt-4 
+                            ">
+                                <div className='flex justify-center items-center'>
+                                    <p className='animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900'></p>
+                                </div>
+                            </button>
+                        ) :
+                            <button type="submit"
+                                className="bg-blue-500 w-full text-white 
                             font-bold cursor-pointer hover:opacity-85 
                             transition-all duration-500 rounded-sm p-2 mt-4">
-                        <p>Salvar</p>
-                    </button>
+                                <p>Salvar</p>
+                            </button>
+                    }
 
 
                 </form>

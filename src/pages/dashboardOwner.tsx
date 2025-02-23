@@ -3,6 +3,7 @@ import logoImg from '../assets/copa-brasao.png'
 import api from '../service/api'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
+import { Loading } from '../components/loading'
 
 
 interface Teams {
@@ -50,6 +51,12 @@ export function DashboardOwner() {
   function logout() {
     localStorage.removeItem('isAuthenticated')
     navigate('/')
+  }
+
+  if (!allTeamsPlayers) {
+    return (
+      <Loading />
+    )
   }
 
   return (

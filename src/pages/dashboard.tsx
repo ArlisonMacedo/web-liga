@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import api from "../service/api"
 import logoImg from '../assets/copa-brasao.png'
 import moment from "moment"
+import { Loading } from "../components/loading"
 
 interface CostTeam {
 
@@ -56,6 +57,12 @@ export function Dashboard() {
     localStorage.removeItem('isAuthenticated')
     localStorage.removeItem('id')
     navigate('/')
+  }
+
+  if (!players && team) {
+    return (
+      <Loading />
+    )
   }
 
 
