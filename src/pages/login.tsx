@@ -1,5 +1,5 @@
 
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import logoImg from '../assets/copa-brasao.png';
 import api from '../service/api';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ export function Login() {
 
     const navigate = useNavigate()
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setFormData({
             ...formData,
