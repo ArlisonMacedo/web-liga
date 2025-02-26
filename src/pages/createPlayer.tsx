@@ -15,7 +15,7 @@ export function CreatePlayer() {
         birthdate: '',
         nameMother: '',
         nameFather: '',
-        id: teamId
+        teamId: teamId
 
     })
     const navigate = useNavigate()
