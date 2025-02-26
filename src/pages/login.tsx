@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import logoImg from '../assets/copa-brasao.png';
 import api from '../service/api';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ export function Login() {
         })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
         if (formData.cpf === SuperUser) {
